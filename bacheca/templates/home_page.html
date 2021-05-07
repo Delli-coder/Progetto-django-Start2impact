@@ -1,0 +1,43 @@
+{% load static %}
+<html>
+    <head>
+        <title>Home page</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+            <h1>LA BACHECA</h1>
+        </div>
+        <div class='box-post'>
+            {% for message in messages %}
+                <p1> {{message }}</p1>
+                {% endfor %}
+            <h2>PUBBLICA UN POST</h2>
+            <form method="POST" class='post-form'>
+                {% csrf_token %}
+                <input type="text" id="msg" name="msg"><br>
+                <br>
+                <input type="submit" value="Invia" />
+            </form>
+        </div>
+        <div class='post-list'>
+            {% for pos in post %}
+            <table>
+                <tr>
+                    <th>{{ pos.author }}</th>
+                    <th>{{ pos.published_date }}</th>
+                </tr>
+                <tr>
+                    <td>{{ pos.content }}</td>
+                </tr>
+            </table>
+            {% endfor %}
+        </div>
+        <div class="end-points">
+            <p>Conteggio parola<a href='word'>Clicca qui</a></p>
+            <p>Post pubblicati nell'ultima ora<a href='post_hours'>Clicca qui.</a></p>
+        </div>
+    </body>
+</html>
