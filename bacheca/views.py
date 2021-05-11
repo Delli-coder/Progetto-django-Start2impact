@@ -54,6 +54,7 @@ def home_page(request):
             new_post = Post(user=request.user, content=messaggio['msg'])
             new_post.set_date()
             new_post.save()
+            new_post.write_on_chain()
             response = []
             posts = Post.objects.filter().order_by('-published_date')
             for post in posts:
